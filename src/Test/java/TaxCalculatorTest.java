@@ -12,6 +12,14 @@ public class TaxCalculatorTest {
         double expectedTax = 0.0;
         assertEquals(expectedTax,taxCalculation.calculateTax());
     }
+    @Test
+    public void taxShouldBeTenPercentOfThePriceForNonImportedAndTaxableItem() {
+        Inventory inventory = new Inventory();
+        Item item = new Item("dress", false, 2000);
+        TaxCalculatorForAnItem taxCalculation = new TaxCalculatorForAnItem(item);
+        double expectedTax = 200.0;
+        assertEquals(expectedTax,taxCalculation.calculateTax());
+    }
 
     @Test
     public void taxShouldBeFivePerceentOfThePriceForAnImportedbook() {
