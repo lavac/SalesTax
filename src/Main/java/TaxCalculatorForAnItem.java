@@ -8,13 +8,14 @@ public class TaxCalculatorForAnItem {
     TaxCalculatorForAnItem(Item item) {
         this.item = item;
     }
-    double calculateTax() {
+
+    void calculateTax() {
         if(item.isImported())
             tax += item.price*0.05;
-        if(!item.isTaxExempted) {
+        if(!item.isTaxExempted()) {
             tax += item.price*0.1;
         }
-        return tax;
+        item.setTax(tax);
     }
 
 }
