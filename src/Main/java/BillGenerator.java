@@ -20,9 +20,11 @@ public class BillGenerator {
     }
 
     double getSalesTax() {
+        System.out.print("sales tax is" + salesTax);
         return salesTax;
     }
     double getGrandTotal() {
+        System.out.print("total is" + grandTotal);
         return grandTotal;
     }
 

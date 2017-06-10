@@ -7,7 +7,7 @@ public class TaxCalculatorTest {
     @Test
     public void taxShouldBeZeroForFoodAndNonImportedItem() {
         Inventory inventory = new Inventory();
-        Item item = new Item("chocalate", false, 10);
+        Item item = new Item("chocolate", false, 10);
         BillGenerator generateBill = new BillGenerator(item, 2);
         generateBill.initiallize();
         generateBill.calculateTotalTaxAndTotalBill();
@@ -48,11 +48,40 @@ public class TaxCalculatorTest {
     public void taxShouldBeFifteenPerceentOfThePriceForAnImportedAndTaxableItem() {
         Inventory inventory = new Inventory();
         Item item = new Item("iphone", true, 50000);
+        BillGenerator generateBill = new BillGenerator(item, 1);
+        generateBill.initiallize();
+        generateBill.calculateTotalTaxAndTotalBill();
+        double expectedTax = 7500.0;
+        double grandTotal = 57500.0;
+        assertEquals(expectedTax,generateBill.getSalesTax());
+        assertEquals(grandTotal,generateBill.getGrandTotal());
+    }
+
+    @Test
+    public void taxAndTotalValueShouldBeIncreasedByThreeForthreeSameItems() {
+        Inventory inventory = new Inventory();
+        Item item = new Item("iphone", true, 50000);
         BillGenerator generateBill = new BillGenerator(item, 3);
         generateBill.initiallize();
         generateBill.calculateTotalTaxAndTotalBill();
         double expectedTax = 22500.0;
         double grandTotal = 172500.0;
+        assertEquals(expectedTax,generateBill.getSalesTax());
+        assertEquals(grandTotal,generateBill.getGrandTotal());
+    }
+
+    @Test
+    public void totalTaxOfdiffrentItemsShouldBeSumOfTaxOfAllTheItems() {
+        Inventory inventory = new Inventory();
+        Item itemOne = new Item("iphone", true, 50000);
+        Item itemTwo = new Item("chocolate", true, 500);
+        BillGenerator generateBill = new BillGenerator(itemOne, 3);
+        generateBill.initiallize();
+        generateBill.calculateTotalTaxAndTotalBill();
+        BillGenerator generateBillTwo = new BillGenerator(itemTwo,3);
+        generateBillTwo.calculateTotalTaxAndTotalBill();
+        double expectedTax = 22575.0;
+        double grandTotal = 174075.0;
         assertEquals(expectedTax,generateBill.getSalesTax());
         assertEquals(grandTotal,generateBill.getGrandTotal());
 

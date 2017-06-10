@@ -10,7 +10,7 @@ public class Inventory {
         createInventoryList();
     }
      void createInventoryList() {
-        taxExemptedItems.put("chocalate", "Food");
+        taxExemptedItems.put("chocolate", "Food");
         taxExemptedItems.put("Rice", "Food");
         taxExemptedItems.put("Tablet", "Medicine");
         taxExemptedItems.put("book", "Book");

@@ -13,6 +13,7 @@ public class TaxCalculatorForAnItem {
         if(item.isImported())
             tax += item.price*0.05;
         if(!item.isTaxExempted()) {
+            System.out.print("tax expeted");
             tax += item.price*0.1;
         }
         item.setTax(tax);
