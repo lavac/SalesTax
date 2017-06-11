@@ -1,24 +1,20 @@
-/**
- * Created by lavanya on 6/10/17.
- */
-public class Item {
-    String item_name;
-    boolean isImported;
-    boolean isTaxExempted;
+class Item {
+    private String item_name;
+    private boolean isImported;
+    private boolean isTaxExempted;
     double price;
-    double tax;
-    Inventory inventory;
+    private double tax;
+    private Inventory inventory;
 
-    Item(String item_name, boolean isImported, int price) {
+    Item(String item_name, boolean isImported, double price) {
         inventory = new Inventory();
         this.item_name = item_name;
         this.isImported = isImported;
         this.price = price;
-        isTaxExempted = Inventory.taxExemptedItems.containsKey(item_name);
+        isTaxExempted = inventory.isTaxExempted(this.item_name);
     }
 
     boolean isTaxExempted() {
-        System.out.print("tax exempted" + isTaxExempted);
         return isTaxExempted;
     }
 
@@ -27,16 +23,14 @@ public class Item {
     }
 
     void setTax(double tax) {
-        System.out.print("tax is" + tax);
         this.tax = tax;
     }
 
     double getTax() {
-        System.out.print(" getting tax is" + tax);
         return tax;
     }
 
-    public double getTotal() {
-        return (price + tax);
+    double getTotal() {
+        return Math.round((price + tax) * 20.0) / 20.0;
     }
 }

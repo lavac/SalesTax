@@ -7,15 +7,22 @@ public class TaxCalculatorTest {
     @Test
     public void taxShouldBeZeroForFoodAndNonImportedItem() {
         Inventory inventory = new Inventory();
-        Item item = new Item("chocolate", false, 10);
-        BillGenerator generateBill = new BillGenerator(item, 2);
+        String input = "2 chocolate at 10.0";
+        String[] lastPart = input.split(" at ");
+        String[] remainingParts = input.split(" ");
+        System.out.println("double is " + lastPart[0]);
+        double price = Double.parseDouble(lastPart[1]);
+        int quantity = Integer.parseInt(remainingParts[0]);
+        String itemName = remainingParts[1];
+        System.out.println("namr is  " + itemName + "price is  " + price + " quantity is " + quantity);
+        Item item = new Item(itemName, false, price);
+        BillGenerator generateBill = new BillGenerator(item, quantity);
         generateBill.initiallize();
         generateBill.calculateTotalTaxAndTotalBill();
         double expectedTax = 0.0;
         double grandTotal = 20.0;
-        assertEquals(expectedTax,generateBill.getSalesTax());
-        assertEquals(grandTotal,generateBill.getGrandTotal());
-        
+        assertEquals(expectedTax, BillGenerator.getSalesTax());
+        assertEquals(grandTotal, BillGenerator.getGrandTotal());
     }
 
     @Test
@@ -27,8 +34,8 @@ public class TaxCalculatorTest {
         generateBill.calculateTotalTaxAndTotalBill();
         double expectedTax = 400.0;
         double grandTotal = 4400.0;
-        assertEquals(expectedTax,generateBill.getSalesTax());
-        assertEquals(grandTotal,generateBill.getGrandTotal());
+        assertEquals(expectedTax, BillGenerator.getSalesTax());
+        assertEquals(grandTotal, BillGenerator.getGrandTotal());
     }
 
     @Test
@@ -40,8 +47,8 @@ public class TaxCalculatorTest {
         double expectedTax = 75.0;
         double grandTotal = 1575.0;
         generateBill.calculateTotalTaxAndTotalBill();
-        assertEquals(expectedTax,generateBill.getSalesTax());
-        assertEquals(grandTotal,generateBill.getGrandTotal());
+        assertEquals(expectedTax, BillGenerator.getSalesTax());
+        assertEquals(grandTotal, BillGenerator.getGrandTotal());
     }
 
     @Test
@@ -53,8 +60,8 @@ public class TaxCalculatorTest {
         generateBill.calculateTotalTaxAndTotalBill();
         double expectedTax = 7500.0;
         double grandTotal = 57500.0;
-        assertEquals(expectedTax,generateBill.getSalesTax());
-        assertEquals(grandTotal,generateBill.getGrandTotal());
+        assertEquals(expectedTax, BillGenerator.getSalesTax());
+        assertEquals(grandTotal, BillGenerator.getGrandTotal());
     }
 
     @Test
@@ -66,8 +73,8 @@ public class TaxCalculatorTest {
         generateBill.calculateTotalTaxAndTotalBill();
         double expectedTax = 22500.0;
         double grandTotal = 172500.0;
-        assertEquals(expectedTax,generateBill.getSalesTax());
-        assertEquals(grandTotal,generateBill.getGrandTotal());
+        assertEquals(expectedTax, BillGenerator.getSalesTax());
+        assertEquals(grandTotal, BillGenerator.getGrandTotal());
     }
 
     @Test
@@ -78,12 +85,11 @@ public class TaxCalculatorTest {
         BillGenerator generateBill = new BillGenerator(itemOne, 3);
         generateBill.initiallize();
         generateBill.calculateTotalTaxAndTotalBill();
-        BillGenerator generateBillTwo = new BillGenerator(itemTwo,3);
+        BillGenerator generateBillTwo = new BillGenerator(itemTwo, 3);
         generateBillTwo.calculateTotalTaxAndTotalBill();
         double expectedTax = 22575.0;
         double grandTotal = 174075.0;
-        assertEquals(expectedTax,generateBill.getSalesTax());
-        assertEquals(grandTotal,generateBill.getGrandTotal());
-
+        assertEquals(expectedTax, BillGenerator.getSalesTax());
+        assertEquals(grandTotal, BillGenerator.getGrandTotal());
     }
 }
