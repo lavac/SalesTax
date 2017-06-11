@@ -1,3 +1,4 @@
+package org.tw.salestax;
 class TaxCalculatorForAnItem {
     private Item item;
     private double tax = 0;

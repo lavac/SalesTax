@@ -1,3 +1,4 @@
+package org.tw.salestax;
 class Item {
     private String item_name;
     private boolean isImported;

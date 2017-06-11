@@ -1,4 +1,5 @@
-class BillGenerator {
+package org.tw.salestax;
+class RecieptGenerator {
     private static double salesTax;
     private static double grandTotal;
     private Item item;
@@ -10,7 +11,7 @@ class BillGenerator {
         grandTotal = 0.0;
     }
 
-    BillGenerator(Item item, int quantity) {
+    RecieptGenerator(Item item, int quantity) {
         this.item = item;
         this.quantity = quantity;
         taxCalculatorForAnItem = new TaxCalculatorForAnItem(item);

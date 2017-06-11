@@ -1,10 +1,11 @@
+package org.tw.salestax;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class Init {
     public static void main(String args[]) throws java.lang.Exception {
         {
-            Inventory inventory = new Inventory();
+            org.tw.salestax.Inventory inventory = new org.tw.salestax.Inventory();
             double salesTax = 0.0;
             double total = 0.0;
             BufferedReader inp = new BufferedReader(new InputStreamReader(System.in));
@@ -18,10 +19,10 @@ public class Init {
                 String itemName = lastPart[0];
                 boolean isimported = (itemName.toLowerCase().contains("imported"));
                 Item item = new Item(itemName, isimported, price);
-                BillGenerator generateBill = new BillGenerator(item, quantity);
+                RecieptGenerator generateBill = new RecieptGenerator(item, quantity);
                 generateBill.calculateTotalTaxAndTotalBill();
-                salesTax = BillGenerator.getSalesTax();
-                total = BillGenerator.getGrandTotal();
+                salesTax = RecieptGenerator.getSalesTax();
+                total = RecieptGenerator.getGrandTotal();
                 System.out.println(itemInfo + " - " + item.getTotal());
             }
             System.out.println("Salestax -  " + salesTax);

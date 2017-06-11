@@ -1,3 +1,9 @@
 .DS_STORE
 out
 .idea/
+.gradle/
+gradlew
+settings.gradle 
+gradlew
+gradlew.bat
+build/
